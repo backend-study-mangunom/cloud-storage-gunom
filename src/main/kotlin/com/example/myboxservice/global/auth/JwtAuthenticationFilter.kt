@@ -64,8 +64,6 @@ class JwtAuthenticationFilter(
             setErrorResponse(request, response, JWTExceptionCode.INVALID_SIGNATURE_TOKEN)
         } catch (e: JwtException) {
             setErrorResponse(request, response, JWTExceptionCode.UNKNOWN_ERROR)
-        } catch (e: Exception) {
-            setErrorResponse(request, response, JWTExceptionCode.UNKNOWN_ERROR)
         }
     }
 
