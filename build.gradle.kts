@@ -40,7 +40,11 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:1.3.50")
-    testImplementation("com.h2database:h2")}
+    testImplementation("com.h2database:h2")
+
+    // https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk
+    implementation("com.amazonaws:aws-java-sdk:1.12.35")
+}
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {

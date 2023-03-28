@@ -35,9 +35,7 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain? {
         return http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/login")
-            .permitAll()
-            .antMatchers("/signUp")
+            .antMatchers("/login", "/signUp", "/upload")
             .permitAll()
             .anyRequest()
             .authenticated()

@@ -36,7 +36,7 @@ class JwtAuthenticationFilter(
     ) {
         try {
             val jwt = getJwtFromRequest(request)
-            if (StringUtils.hasText(jwt)) {
+            if (!jwt.isNullOrEmpty()) {
                 val claims = tokenProvider.getUserIdFromToken(jwt).getOrThrow()
                 val userDetails: UserDetails = claims["id"]?.let {
                     customUserDetailsService.loadUserByUserId(
@@ -53,7 +53,8 @@ class JwtAuthenticationFilter(
                 SecurityContextHolder.getContext().authentication = authentication
                 filterChain.doFilter(request, response)
             } else {
-                setErrorResponse(request, response, JWTExceptionCode.MISSING_TOKEN)
+//                setErrorResponse(request, response, JWTExceptionCode.MISSING_TOKEN)
+                filterChain.doFilter(request, response)
             }
         } catch (e: ExpiredJwtException) {
             setErrorResponse(request, response, JWTExceptionCode.EXPIRED_TOKEN)
